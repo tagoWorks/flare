@@ -15,7 +15,7 @@
 
 **Using Flare is a little more complicated than AKoD, as it utilizies Ubuntu/Linux, so you will be in the terminal a lot. Flare also requires you to have a registered domain, in order to tunnel your server through Cloudflare.**
 
-<img align="right" src="https://cdn.discordapp.com/attachments/1092315227057561630/1230951361634369588/compare.png?ex=66352fca&is=6622baca&hm=dfcbad54f6fc2bff0cfefbc4c5e6aad373df604633f7ce157d1fef9fb354b49f&">
+<img align="right" width="666" height="258" src="https://cdn.discordapp.com/attachments/1092315227057561630/1230951361634369588/compare.png?ex=66352fca&is=6622baca&hm=dfcbad54f6fc2bff0cfefbc4c5e6aad373df604633f7ce157d1fef9fb354b49f&">
 
 **You will need to install the following requirements on your Ubuntu server in order for Flare to work:**
    1. Python
