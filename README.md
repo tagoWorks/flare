@@ -15,13 +15,20 @@
 
 **Using Flare is a little more complicated than AKoD, as it utilizies Ubuntu/Linux, so you will be in the terminal a lot. Flare also requires you to have a registered domain, in order to tunnel your server through Cloudflare.**
 
+<img align="right" src="https://cdn.discordapp.com/attachments/1092315227057561630/1230888805016408185/flareshowcase.png?ex=6634f587&is=66228087&hm=d9a6224f29492c1626da96a5d53806b0c382880bb08c5dc36c57785ca77a5634&">
+
 **You will need to install the following requirements on your Ubuntu server in order for Flare to work:**
    1. Python
    2. Node.js
-   2. [Apache](https://github.com/tagoWorks/flare/wiki/Installing-WebDAV#install-apache-web-server)
-   2. [Docker](https://github.com/tagoWorks/flare/wiki/Setting-up-Cloudflare#how-to-install-docker-on-ubuntu)
+   3. [Apache](https://github.com/tagoWorks/flare/wiki/Installing-WebDAV#install-apache-web-server)
+   4. [Docker](https://github.com/tagoWorks/flare/wiki/Setting-up-Cloudflare#how-to-install-docker-on-ubuntu)
 
 ### To get started, either [purchase a domain](https://github.com/tagoWorks/flare/wiki/Getting-a-Domain), or boot up your Ubuntu/Linux server and [get stared](https://github.com/tagoWorks/flare/wiki/Installing-WebDAV)!
+
+
+<br />
+<br />
+<br />
 
 # License & Information 📃
 This project is published under the [MIT license](./LICENSE)
