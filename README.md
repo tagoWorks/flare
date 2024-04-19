@@ -2,6 +2,7 @@
 <div align="center">
     </a>
     <br />
+    
    ![GitHub last commit](https://img.shields.io/github/last-commit/tagoworks/flare)
    ![GitHub issues](https://img.shields.io/github/issues-raw/tagoworks/flare)
    ![GitHub](https://img.shields.io/github/license/tagoworks/flare)
