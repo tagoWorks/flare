@@ -1,5 +1,5 @@
 {
-  "name": "akod-auth-bot",
+  "name": "flare-auth-bot",
   "version": "1.0.0",
   "description": "A discord bot that makes activating keys easy!",
   "main": "main.js",
