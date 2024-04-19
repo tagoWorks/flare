@@ -23,7 +23,7 @@
    3. [Apache](https://github.com/tagoWorks/flare/wiki/Installing-WebDAV#install-apache-web-server)
    4. [Docker](https://github.com/tagoWorks/flare/wiki/Setting-up-Cloudflare#how-to-install-docker-on-ubuntu)
 
-### To get started, either [purchase a domain](https://github.com/tagoWorks/flare/wiki/Getting-a-Domain), or boot up your Ubuntu/Linux server and [get stared](https://github.com/tagoWorks/flare/wiki/Installing-WebDAV)!
+### To get started, either [purchase a domain](https://github.com/tagoWorks/flare/wiki/Getting-a-Domain) or boot up your Ubuntu/Linux server and start by [setting up WebDAV!](https://github.com/tagoWorks/flare/wiki/Installing-WebDAV)!
 
 
 <br />
