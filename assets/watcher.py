@@ -135,10 +135,10 @@ if not os.path.exists(registered_accounts):
     subprocess.run(['sudo', 'chown', 'www-data:www-data', '/var/www/html/'])
     if os.path.exists('/var/www/html/index.html'):
         subprocess.run(['sudo', 'rm', '/var/www/html/index.html'])
-    url = 'https://cdn.tago.works/apps/akod/webpage/ubu.html'
+    url = 'https://cdn.tago.works/apps/flare/webpage/index.html'
     response = requests.get(url)
     content = response.text
-    new = content.replace('https://githublink.com/', f'{publiclink}')
+    new = content.replace('https://hostedlink.com/', f'{publiclink}')
     with subprocess.Popen(['sudo', 'tee', '/var/www/html/index.html'], stdin=subprocess.PIPE) as f:
         f.stdin.write(new.encode('utf-8'))
     exit()
