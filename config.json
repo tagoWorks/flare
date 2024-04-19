@@ -1,11 +1,9 @@
 {
-  "token": "discord_bot_token",
+  "token": " ",
   "guildID": " ",
   "ownerID": " ",
   "onlySendIn": " ",
   "logChannel": " ",
-  "GITUSERNAME": " ",
-  "GITSTORAGEREPO": " ",
-  "GITPAT": "github_personal_access_token",
-  "netlifyURL": "https://yourrepo.netlify.app/"
+  "webdavDir": " ",
+  "webdavLink": " "
 }
