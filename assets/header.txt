@@ -1,17 +1,3 @@
-                                                                                                    
-                                                                                                    
-                   jjj               ||||||    (()))(|                            ttttttftffj            
-                  jfff   developed   ||||||   (()))))                             tttttttfffffffj        
-                 jfffff    by        ||||||  ((())))                              tttttttffffffffjx      
-                jjjfffff    tago     |||||| |((())(            ||||||||           ttttttffffffffffjj     
-                jjjffffff            ||||||(((((((          |((((|||||||/         tttttt     rffffjjr    
-               jjjjfffffff           |||||((((((           ((((((||||||||//       tttttt       fffjjj    
-              jjjjjfjfffftr          ||||||((((/          )(((((|    ||||///      /ttttt       fffjjj    
-             rjjjjj  fffftt          ||||||((((()         (((((|      |||///      tttttt       fffjjj    
-            rrjjjjjjjffftttt         |||||((((((((        (((((|      /||///      tttttf     fffffjjj    
-           xrrjjjjjfffffftttt        |||||| (((()))       ((((((|    ||||///      ttttttfftfffffffjj     
-          xrrrjjjjjffffftttttt       ||||||  ((())))       ((((((||||||||//       tttttttffffffffjj      
-         xrrrrjj        ftttttt      ||||||   (())))))      |((((||||||||         tttttttffffffff        
-         rrrrjr          fttttt      ||||||     ()))))         ||||||||           fttttfffffr            
-                                                                                                    
-                                                                                                    
+   
+    flare
+    developed by tago

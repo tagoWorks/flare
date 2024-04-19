@@ -27,7 +27,7 @@ client.once('ready', () => {
   console.log('\n\n');
   console.log(`Logged in: ${client.user.tag}`);
   console.log('\n');
-  console.log('Thank you for trying my Activating Keys on Discord bot project! For more information or help visit the github page: https://github.com/tagoworks/akod. You can change the status of the bot in the main.js file\nThis is a modified version of AKoD designed for Ubuntu and Linux.');
+  console.log('Flare is a modified version of AKoD, coded specificly to support Ubuntu and Linux. Check out my orginal project at https://github.com.tagoworks/akod');
   console.log('\n');
   console.log('REMEMBER: You need to always be running the watcher.py file in order to keep up with new accounts!');
   client.user.setPresence({
