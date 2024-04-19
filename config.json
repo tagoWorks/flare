@@ -4,6 +4,6 @@
   "ownerID": " ",
   "onlySendIn": " ",
   "logChannel": " ",
-  "webdavDir": " ",
+  "webdavDir": "/var/www/accs/",
   "webdavLink": " "
 }
