@@ -18,8 +18,8 @@
 **You will need to install the following requirements on your Ubuntu server in order for Flare to work:**
    1. Python
    2. Node.js
-   2. Apache
-   2. Docker
+   2. [Apache](https://github.com/tagoWorks/flare/wiki/Installing-WebDAV#install-apache-web-server)
+   2. [Docker](https://github.com/tagoWorks/flare/wiki/Setting-up-Cloudflare#how-to-install-docker-on-ubuntu)
 
 ### To get started, either [purchase a domain](https://github.com/tagoWorks/flare/wiki/Getting-a-Domain), or boot up your Ubuntu/Linux server and [get stared](https://github.com/tagoWorks/flare/wiki/Installing-WebDAV)!
 
