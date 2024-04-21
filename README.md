@@ -9,7 +9,7 @@
     
 </div>
 
-> Flare is a modified version of [AKoD](https://github.com/tagoWorks/akod) which instead of using GitHub and Netlify servers, uses your own Ubuntu or Linux server to host the data. Flare allows your users to validate their purchased activation keys from your site using a simple Discord bot command. It creates a directory with the validated account name, generates an encrypted key file, and adds the changes to the WebDAV directory for access. AKoD and Flare are open-source, and you're encouraged to make your own modifications to suit your needs.
+> Flare is a modified version of [AKoD](https://github.com/tagoWorks/akod) which instead of using GitHub and Netlify servers, uses your own Ubuntu or Linux server to host the data. Flare allows your users to validate their purchased activation keys from your site using a simple Discord bot command. It creates a directory with the validated account name, generates an encrypted key file, and adds the changes to the WebDAV directory for access. Flare also includes amazing additional features such as HWID/Node locking licenses, complete API and server access, and custom domains to make your project even more professional!
 
 # Getting Started with Flare 🔥
 
