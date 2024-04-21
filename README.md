@@ -29,10 +29,6 @@
 
 ### To get started, either [purchase a domain](https://github.com/tagoWorks/flare/wiki/Getting-a-Domain) or boot up your Ubuntu/Linux server and start by [setting up WebDAV](https://github.com/tagoWorks/flare/wiki/Installing-WebDAV)!
 
-
-<br />
-<br />
-<br />
 <br />
 
 # License & Information 📃
