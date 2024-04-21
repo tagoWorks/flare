@@ -1,4 +1,4 @@
-import os, subprocess, time, shutil, string, secrets, json, glob, requests
+import os, subprocess, time, shutil, string, secrets, json, glob, requests, sys
 from cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes
 from cryptography.hazmat.primitives.kdf.pbkdf2 import PBKDF2HMAC
 from cryptography.hazmat.primitives import hashes
@@ -99,8 +99,6 @@ if not os.path.exists('identifiers.txt'):
                     exit()
                 if cont == 'n':
                     os.remove(backupfile)
-    if not os.path.exists(registered_accounts):
-        os.mkdir(registered_accounts)
     privkey = ''.join(secrets.choice(string.ascii_letters + string.digits) for _ in range(32))
     if not bytes(''.join(chr(array) for array in [51, 105, 68, 100, 106, 86, 52, 119, 65, 82, 76, 117, 71, 90, 97, 80, 78, 57, 95, 69, 45, 104, 113, 72, 84, 48, 79, 56, 73, 98, 105, 106, 117, 50, 57, 51, 81, 76, 109, 67, 115, 103, 111, 61]), 'utf-8') == identifier: print("It seems that you've edited the identifier from the default identifier key! Only change the identifier if you know what you are doing, as it will make validating licenses impossible with AKoDAuth. Learn more at https://github.com/tagoworks/akod") and exit()
     with open('identifiers.txt', 'w') as f:
@@ -139,11 +137,13 @@ if not os.path.exists(registered_accounts):
     response = requests.get(url)
     content = response.text
     new = content.replace('https://hostedlink.com/', f'{publiclink}')
-    with subprocess.Popen(['sudo', 'tee', '/var/www/html/index.html'], stdin=subprocess.PIPE) as f:
+    with subprocess.Popen(['sudo', 'tee', '/var/www/html/index.html'], stdin=subprocess.DEVNULL) as f:
         f.stdin.write(new.encode('utf-8'))
+        os.system('clear')
+        os.system('sudo python3 ' + ' '.join(sys.argv))
     exit()
 if os.getuid() != 0:
     print("This script requires administrative privileges. Please run it with sudo.")
     exit()
-print("\n\nWatching account folder...")
+print("\n\nWatching for accounts in " + webdavdirectory + "...")
 monitor(registered_accounts, webdavdirectory)
