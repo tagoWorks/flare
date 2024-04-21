@@ -9,7 +9,7 @@
     
 </div>
 
-> AKoD Flare version is a modified version of [AKoD](https://github.com/tagoWorks/akod) which instead of using GitHub and Netlify servers, uses your own Ubuntu or Linux server to host the data. Flare allows your users to validate their purchased activation keys from your site using a simple Discord bot command. It creates a directory with the validated account name, generates an encrypted key file, and adds the changes to the WebDAV directory for access. To integrate Flare into your software, import the AKoDAuth package and obfuscate your final code using a tool like Hyperion to hide the private key. AKoD and Flare are open-source, and you're encouraged to make your own modifications to suit your needs.
+> Flare is a modified version of [AKoD](https://github.com/tagoWorks/akod) which instead of using GitHub and Netlify servers, uses your own Ubuntu or Linux server to host the data. Flare allows your users to validate their purchased activation keys from your site using a simple Discord bot command. It creates a directory with the validated account name, generates an encrypted key file, and adds the changes to the WebDAV directory for access. AKoD and Flare are open-source, and you're encouraged to make your own modifications to suit your needs.
 
 # Getting Started with Flare 🔥
 
@@ -17,19 +17,18 @@
 
 <img align="right" width="532.8" height="412.8" src="https://cdn.discordapp.com/attachments/1092315227057561630/1230951361634369588/compare.png?ex=66352fca&is=6622baca&hm=dfcbad54f6fc2bff0cfefbc4c5e6aad373df604633f7ce157d1fef9fb354b49f&">
 
-**You will need to install the following requirements on your Ubuntu server in order for Flare to work:**
+**You will need to have the following requirements installed on your server in order for Flare to work:**
+
+*Ones undelined in blue are gone over in the wiki pages*
    1. Python 3.6
    2. Node.js
    3. Git
-   4. [Apache](https://github.com/tagoWorks/flare/wiki/Installing-WebDAV#install-apache-web-server)
-   5. [Docker](https://github.com/tagoWorks/flare/wiki/Setting-up-Cloudflare#how-to-install-docker-on-ubuntu)
+   4. Flask
+   5. [Apache](https://github.com/tagoWorks/flare/wiki/Installing-WebDAV#install-apache-web-server)
+   6. [Docker](https://github.com/tagoWorks/flare/wiki/Setting-up-Cloudflare#how-to-install-docker-on-ubuntu)
 
 ### To get started, either [purchase a domain](https://github.com/tagoWorks/flare/wiki/Getting-a-Domain) or boot up your Ubuntu/Linux server and start by [setting up WebDAV](https://github.com/tagoWorks/flare/wiki/Installing-WebDAV)!
 
-
-<br />
-<br />
-<br />
 <br />
 
 # License & Information 📃
