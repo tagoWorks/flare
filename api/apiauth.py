@@ -27,6 +27,16 @@ flareRegisteredAccountsDir = '/flare/assets/registered/'
 debug = False
 
 
+
+
+
+
+
+
+
+
+
+
 import requests
 from flask import Flask, request
 from cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes
@@ -173,11 +183,26 @@ def is_valid_route_version_2():
                     return "VALID", 200
                 else:
                     return "USED_ON_OTHER_DEVICE", 401
+    if identifiertype == 'IP':
+        hardlock = checknode(flareRegisteredAccountsDir, user, uniqueidentifier)
+        if valid:
+            if not hardlock:
+                return "VALID", 200
+            else:
+                with open(flareRegisteredAccountsDir + user + '/check', 'r') as file:
+                    for line in file:
+                        parts = line.split(':')
+                        if len(parts) > 1:
+                            key = parts[0].strip()
+                            ipaddr = parts[1].strip()
+                if uniqueidentifier == ipaddr:
+                    return "VALID", 200
+                else:
+                    return "USED_AT_DIFF_IP", 401
         else:
             return "INVALID", 401
     else:
         return "ERROR_UNKIDENTIFIERTYPE", 400
-
 if __name__ == '__main__':
     if svtype == 'default':
         app.run(debug=debug)
