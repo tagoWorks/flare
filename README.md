@@ -13,17 +13,16 @@
 
 # Getting Started with Flare 🔥
 
-**Using Flare is a little more complicated than AKoD, as it utilizies Ubuntu/Linux, so you will be in the terminal a lot. Flare also requires you to have a registered domain, in order to tunnel your server through Cloudflare.**
+Using Flare is a little more complicated than AKoD, as it utilizies Ubuntu/Linux, so you will be in the terminal a lot. Flare also requires you to **have a registered domain**, in order to tunnel your server through Cloudflare.
 
 <img align="right" width="532.8" height="412.8" src="https://cdn.discordapp.com/attachments/1092315227057561630/1231825002450653224/compare.png?ex=66385d6e&is=6625e86e&hm=dcdeedd882b6c1bb1a21055a51f1cec6f58e10a8fe9bbeece779cba94d90c9fd&">
 
 **You will need to have the following requirements installed on your server in order for Flare to work:**
 
-*Ones undelined in blue are gone over in the wiki pages*
-   1. Python 3.6
-   2. Node.js
-   3. Git
-   4. Flask
+   1. [Python 3.6](https://docs.python-guide.org/starting/install3/linux/)
+   2. [PIP](https://www.tecmint.com/install-pip-in-linux/)
+   3. [Node.js](https://snapcraft.io/node)
+   4. [Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
    5. [Apache](https://github.com/tagoWorks/flare/wiki/Installing-WebDAV#install-apache-web-server)
    6. [Docker](https://github.com/tagoWorks/flare/wiki/Setting-up-Cloudflare#how-to-install-docker-on-ubuntu)
 
