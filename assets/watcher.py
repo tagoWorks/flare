@@ -137,11 +137,10 @@ if not os.path.exists(registered_accounts):
     response = requests.get(url)
     content = response.text
     new = content.replace('https://hostedlink.com/', f'{publiclink}')
-    with subprocess.Popen(['sudo', 'tee', '/var/www/html/index.html'], stdin=subprocess.DEVNULL) as f:
+    with subprocess.Popen(['sudo', 'tee', '/var/www/html/index.html'], stdin=subprocess.PIPE) as f:
         f.stdin.write(new.encode('utf-8'))
         os.system('clear')
         os.system('sudo python3 ' + ' '.join(sys.argv))
-    exit()
 if os.getuid() != 0:
     print("This script requires administrative privileges. Please run it with sudo.")
     exit()

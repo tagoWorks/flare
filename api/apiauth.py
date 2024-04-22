@@ -117,6 +117,10 @@ def checknode(filepath, username, id):
                     with open(filepath, 'w') as f:
                        f.write(f"{key}:{id}")
                     return False
+                elif hardlocked == "IP":
+                    with open(filepath, 'w') as f:
+                       f.write(f"{key}:{id}")
+                    return False
                 elif hardlocked == "":
                     return False
                 else:
@@ -141,7 +145,7 @@ def set_private_key():
         return "PRIV_ERROR", 400
 @app.route('/publickey', methods=['POST'])
 def set_public_key():
-    link = request.form.get('link')
+    link = request.form.get('key')
     if link:
         response, status_code = publicserverkey(link)
         return response, status_code
