@@ -15,20 +15,32 @@ module.exports = {
     ),
   
   async execute(interaction) {
+    console.log('Received interaction:', interaction);
+
     if (!ownerID) {
+      console.log('Owner information not found in config.');
       return interaction.reply({ content: 'Owner information not found in config.', ephemeral: true });
     }
     if (interaction.user.id !== ownerID) {
+      console.log('Unauthorized access attempted by user:', interaction.user.id);
       return interaction.reply({ content: 'You do not have permission to use this command.', ephemeral: true });
     }
+    
     const accToRemove = interaction.options.getString('account-name');
+    console.log('Received account name to remove:', accToRemove);
+    
     const assetsFolderPath = path.join(__dirname, '..', 'assets', 'registered');
+    console.log('Assets folder path:', assetsFolderPath);
+    
     const accFolder = path.join(assetsFolderPath, accToRemove);
+    console.log('Account folder path to remove:', accFolder);
+    
     fs.rmdir(accFolder, { recursive: true }, (err) => {
       if (err) {
         console.error('Error removing account folder:', err);
         return interaction.reply({ content: 'Error removing account folder. Please try again later.', ephemeral: true });
       }
+      console.log('Account folder deleted successfully:', accToRemove);
       return interaction.reply({ content: `Account ${accToRemove} deleted successfully.`, ephemeral: true });
     });
   },

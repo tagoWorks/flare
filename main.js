@@ -28,8 +28,9 @@ client.once('ready', () => {
   console.log(`Logged in: ${client.user.tag}`);
   console.log('\n');
   console.log('Flare is a modified version of AKoD, coded specificly to support Ubuntu and Linux. Check out my orginal project at https://github.com.tagoworks/akod');
+  console.log('In order for Flare to be working you need to have the Flask API, Discord bot, this watcher, and Cloudflare docker all running at the same time.');
   console.log('\n');
-  console.log('REMEMBER: You need to always be running the watcher.py file in order to keep up with new accounts!');
+  console.log('--------------------LOGGING-------------------');
   client.user.setPresence({
     status: 'online',
     activities: [{

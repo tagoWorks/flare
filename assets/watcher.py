@@ -144,5 +144,5 @@ if not os.path.exists(registered_accounts):
 if os.getuid() != 0:
     print("This script requires administrative privileges. Please run it with sudo.")
     exit()
-print("\n\nWatching for accounts in " + webdavdirectory + "...")
+print("\n\nWatching for accounts in " + registered_accounts + "...")
 monitor(registered_accounts, webdavdirectory)
