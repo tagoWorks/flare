@@ -20,10 +20,10 @@
 **You will need to have the following requirements installed on your server in order for Flare to work:**
 
 *Ones undelined in blue are gone over in the wiki pages*
-   1. Python 3.6
-   2. Node.js
-   3. Git
-   4. Flask
+   1. [Python 3.6](https://docs.python-guide.org/starting/install3/linux/)
+   2. [PIP](https://www.tecmint.com/install-pip-in-linux/)
+   3. [Node.js](https://snapcraft.io/node)
+   4. [Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
    5. [Apache](https://github.com/tagoWorks/flare/wiki/Installing-WebDAV#install-apache-web-server)
    6. [Docker](https://github.com/tagoWorks/flare/wiki/Setting-up-Cloudflare#how-to-install-docker-on-ubuntu)
 
