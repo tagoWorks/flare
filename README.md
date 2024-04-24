@@ -1,7 +1,7 @@
 <div align="center">
     </a>
     <br />
-    <img align="center" src="https://cdn.discordapp.com/attachments/1092315227057561630/1232511949246435389/compare.png?ex=6629b9b3&is=66286833&hm=641a6e106a36ca43f17f73e635d60c1c27f6a960bdac8186ef14d034ce7bed86&">
+    <img align="center" src="https://cdn.discordapp.com/attachments/1092315227057561630/1230745160464338954/flare.png?ex=66346fc0&is=6621fac0&hm=b6dafeba296665988c5afaad3b1dd3d82abf143f1fdc76cd7299e259c94564cd&">
     
    ![GitHub last commit](https://img.shields.io/github/last-commit/tagoworks/flare)
    ![GitHub issues](https://img.shields.io/github/issues-raw/tagoworks/flare)
@@ -15,7 +15,7 @@
 
 **Using Flare is a little more complicated than AKoD, as it utilizies Ubuntu/Linux, so you will be in the terminal a lot. Flare also requires you to have a registered domain, in order to tunnel your server through Cloudflare.**
 
-<img align="right" width="532.8" height="412.8" src="https://cdn.discordapp.com/attachments/1092315227057561630/1231825002450653224/compare.png?ex=66385d6e&is=6625e86e&hm=dcdeedd882b6c1bb1a21055a51f1cec6f58e10a8fe9bbeece779cba94d90c9fd&">
+<img align="right" width="532.8" height="412.8" src="https://cdn.discordapp.com/attachments/1092315227057561630/1232511949246435389/compare.png?ex=6629b9b3&is=66286833&hm=641a6e106a36ca43f17f73e635d60c1c27f6a960bdac8186ef14d034ce7bed86&">
 
 **You will need to have the following requirements installed on your server in order for Flare to work:**
 
