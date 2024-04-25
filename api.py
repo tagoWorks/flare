@@ -20,7 +20,7 @@ usecustomhost = '0.0.0.0'
 
 # Database directory for the API to read and write to
 # Mostly used if you are node locking licenses
-flareRegisteredAccountsDir = '/flare/assets/registered/'
+flareRegisteredAccountsDir = './assets/registered/'
 
 # Debug mode for Flask API
 # Set debug mode to false when deploying to production
@@ -37,7 +37,7 @@ debug = False
 
 
 
-import requests
+import requests, os, shutil, time
 from flask import Flask, request
 from cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes
 from cryptography.hazmat.backends import default_backend
@@ -94,39 +94,110 @@ def isValid(login, password):
         decryptor = cipher.decryptor()
         final_decrypted_data = decryptor.update(decrypted_data) + decryptor.finalize()
         final_decrypted_data = final_decrypted_data.decode()
-        for line in str(final_decrypted_data):
-            parts = line.split(':')
-            if len(parts) > 1:
-                key = parts[0].strip()
-                hwid = parts[1].strip()
-            else:
-                key = final_decrypted_data
+        print(final_decrypted_data)
         return key == activationkey
     except:
         return False
-def checknode(filepath, username, id):
-    filepath = filepath + username + '/check'
-    with open(filepath, 'r') as file:
-        for line in file:
-            parts = line.split(':')
-            if len(parts) > 1:
-                key = parts[0].strip()
-                hardlocked = parts[1].strip()
+    
+def isValidV2(login, password, id):
+    global publickey, activationkey, privkey
+    if svtype == 'default':
+        if customloco == 'none':
+            url = publickey + login + '/check'
+        else:
+            url = publickey + '/' + customloco + '/' + login + '/check'
+        response = requests.get(url)
+    elif svtype == 'webdav':
+        if customloco == 'none':
+            url = publickey + 'accs/' + login + '/check'
+        else:
+            url = publickey + customloco + '/' + login + '/check'
+        response = requests.post(url)
+    if response.status_code == 404:
+        print ("NOT FOUND: " + url)
+        return False
+    try:
+        encrypted_data = response.content
+        iv = b'JMWUGHTG78TH78G1'
+        final_encrypted_data = encrypted_data[len(iv):]
+        password = password.encode()
+        salt = b'352384758902754328957328905734895278954789'
+        kdf = PBKDF2HMAC(algorithm=hashes.SHA256(),length=32,salt=salt,iterations=100000,backend=default_backend())
+        password_key = kdf.derive(password)
+        cipher_password = Cipher(algorithms.AES(password_key), modes.CFB(iv), backend=default_backend())
+        decryptor_password = cipher_password.decryptor()
+        decrypted_data = decryptor_password.update(final_encrypted_data) + decryptor_password.finalize()
+        cipher = Cipher(algorithms.AES(privkey), modes.CFB(iv), backend=default_backend())
+        decryptor = cipher.decryptor()
+        final_decrypted_data = decryptor.update(decrypted_data) + decryptor.finalize()
+        final_decrypted_data = final_decrypted_data.decode()
+        print(final_decrypted_data)
+        parts = final_decrypted_data.partition(":")
+        if len(parts) > 1:
+            key = parts[0].strip()
+            hardlocked = parts[2].strip()
+            if hardlocked == "HWID" or hardlocked == "IP":
                 print(f"Key: {key}, Value: {hardlocked}")
-                if hardlocked == "HWID":
-                    with open(filepath, 'w') as f:
-                       f.write(f"{key}:{id}")
-                    return False
-                elif hardlocked == "IP":
-                    with open(filepath, 'w') as f:
-                       f.write(f"{key}:{id}")
-                    return False
-                elif hardlocked == "":
-                    return False
-                else:
-                    return True
+                with open(flareRegisteredAccountsDir + login + '/check', 'w') as f:
+                    f.write(f"{key}:{id}")
+                    f.close()
+                encrypt_file_pass(flareRegisteredAccountsDir + login + '/check')
+                return True
             else:
-                return False
+                if hardlocked == id:
+                    print (f"STATIC: {hardlocked} INCOMING: {id}")
+                    return True
+                else:
+                    print (f"STATIC: {hardlocked} INCOMING: {id}")
+                    return False
+        else:
+            print (f"INVALID: {final_decrypted_data}")
+            return False
+    except Exception as e:
+        print (f"UNKNOWN ERROR: {e}")
+        return False
+
+def encrypt_file_pass(file_path):
+    global privkey, password
+    print (f"Encrypting file: {file_path}")
+    with open(file_path, 'rb') as f:
+        data = f.read()
+    iv = b'JMWUGHTG78TH78G1'
+    username = os.path.dirname(file_path).split('/')[-1]
+    password_file_path = os.path.join(os.path.dirname(file_path), 'password.txt')
+    print (os.path.dirname(file_path))
+    with open(password_file_path, 'r') as password_file:
+        password = password_file.read().strip().encode()
+    salt = b'352384758902754328957328905734895278954789'
+    kdf = PBKDF2HMAC(
+        algorithm=hashes.SHA256(),
+        length=32,
+        salt=salt,
+        iterations=100000,
+        backend=default_backend()
+    )
+    password_key = kdf.derive(password)
+    cipher = Cipher(algorithms.AES(privkey), modes.CFB(iv), backend=default_backend())
+    encryptor = cipher.encryptor()
+    encrypted_data = encryptor.update(data) + encryptor.finalize()
+    cipher_password = Cipher(algorithms.AES(password_key), modes.CFB(iv), backend=default_backend())
+    encryptor_password = cipher_password.encryptor()
+    final_encrypted_data = encryptor_password.update(encrypted_data) + encryptor_password.finalize()
+    final_encrypted_data = iv + final_encrypted_data
+    os.chdir('/')
+    if customloco == 'none':
+        path = './var/www/accs/' + username
+        print (path)
+        shutil.rmtree(path)
+        os.mkdir('./var/www/accs/' + username)
+    else:
+        path = './var/www/' + customloco + '/' + username
+        shutil.rmtree(path)
+        os.mkdir('./var/www/' + customloco + '/' + username)
+    with open(path + '/check', 'wb') as f:
+        f.write(final_encrypted_data)
+        f.close()
+
 @app.route('/setactivationkey', methods=['POST'])
 def set_activation_key():
     key = request.form.get('key')
@@ -167,46 +238,13 @@ def is_valid_route_version_2():
     user = request.form.get('username')
     password = request.form.get('password')
     uniqueidentifier = request.form.get('uniqueidentifier')
-    identifiertype = request.form.get('type')
     if not user or not password:
         return "INVALID_FIELDS", 400
-    valid = isValid(user, password)
-    if identifiertype == 'HWID':
-        hardlock = checknode(flareRegisteredAccountsDir, user, uniqueidentifier)
-        if valid:
-            if not hardlock:
-                return "VALID", 200
-            else:
-                with open(flareRegisteredAccountsDir + user + '/check', 'r') as file:
-                    for line in file:
-                        parts = line.split(':')
-                        if len(parts) > 1:
-                            key = parts[0].strip()
-                            hwid = parts[1].strip()
-                if uniqueidentifier == hwid:
-                    return "VALID", 200
-                else:
-                    return "USED_ON_OTHER_DEVICE", 401
-    if identifiertype == 'IP':
-        hardlock = checknode(flareRegisteredAccountsDir, user, uniqueidentifier)
-        if valid:
-            if not hardlock:
-                return "VALID", 200
-            else:
-                with open(flareRegisteredAccountsDir + user + '/check', 'r') as file:
-                    for line in file:
-                        parts = line.split(':')
-                        if len(parts) > 1:
-                            key = parts[0].strip()
-                            ipaddr = parts[1].strip()
-                if uniqueidentifier == ipaddr:
-                    return "VALID", 200
-                else:
-                    return "USED_AT_DIFF_IP", 401
-        else:
-            return "INVALID", 401
+    valid = isValidV2(user, password, uniqueidentifier)
+    if valid:
+            return "VALID", 200
     else:
-        return "ERROR_UNKIDENTIFIERTYPE", 400
+        return "INVALID", 401
 if __name__ == '__main__':
     if svtype == 'default':
         app.run(debug=debug)

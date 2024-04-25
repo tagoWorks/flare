@@ -35,13 +35,19 @@ module.exports = {
     const accFolder = path.join(assetsFolderPath, accToRemove);
     console.log('Account folder path to remove:', accFolder);
     
-    fs.rmdir(accFolder, { recursive: true }, (err) => {
+    fs.rm(accFolder, { recursive: true }, (err) => {
       if (err) {
         console.error('Error removing account folder:', err);
-        return interaction.reply({ content: 'Error removing account folder. Please try again later.', ephemeral: true });
+        return interaction.reply({
+          content: 'Error removing account folder. Please try again later.',
+          ephemeral: true
+        });
       }
       console.log('Account folder deleted successfully:', accToRemove);
-      return interaction.reply({ content: `Account ${accToRemove} deleted successfully.`, ephemeral: true });
+      return interaction.reply({
+        content: `Account ${accToRemove} deleted successfully.`,
+        ephemeral: true
+      });
     });
   },
   permissions: [

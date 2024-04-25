@@ -66,7 +66,7 @@ module.exports = {
       delete cooldowns[userId];
       return;
     }
-    console.log('Validations passed');
+    console.log('Requirements met.');
 
     // Path to the assets folder from the root
     const assetsFolderPath = path.join(__dirname, '..', 'assets');
@@ -155,13 +155,13 @@ module.exports = {
                   } else {
                     console.error('Error: Target channel not found.');
                   }
-                  interaction.reply({ content: `If your key is valid your login will be created! Please wait about 15-20 seconds for the servers to update before use.`, ephemeral: true });
+                  interaction.reply({ content: `Handshaking auth server with ${licenseKey}... If your key is valid you will be able to log in!`, ephemeral: true });
                 });
               });
             });
           });
         } else {
-          interaction.reply({ content: 'Invalid license key', ephemeral: true });
+          interaction.reply({ content: `Handshaking auth server with ${licenseKey}... If your key is valid you will be able to log in!`, ephemeral: true });
         }
       });
     });
