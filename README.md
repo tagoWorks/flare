@@ -13,7 +13,7 @@
 
 # Getting Started with Flare 🔥
 
-**Using Flare is a little more complicated than AKoD, as it utilizies Ubuntu/Linux, so you will be in the terminal a lot. Flare also requires you to have a registered domain, in order to tunnel your server through Cloudflare.**
+**Using Flare is a little more complicated than AKoD, as it utilizies Linux, so you will be in the terminal a lot. Flare also requires you to have a registered domain, in order to tunnel your server through Cloudflare.**
 
 <img align="right" width="550.4" height="453.6" src="https://cdn.discordapp.com/attachments/1092315227057561630/1232696927343218779/compare.png?ex=662a65f9&is=66291479&hm=fa242de9db7c37359636255836b2365910db9db1b78bab0539c4280db3e8dbc4&">
 
@@ -27,7 +27,7 @@
    5. [Apache](https://github.com/tagoWorks/flare/wiki/Installing-WebDAV#install-apache-web-server)
    6. [Docker](https://github.com/tagoWorks/flare/wiki/Setting-up-Cloudflare#how-to-install-docker-on-ubuntu)
 
-### To get started, either [purchase a domain](https://github.com/tagoWorks/flare/wiki/Getting-a-Domain) or boot up your Ubuntu/Linux server and start by [setting up WebDAV](https://github.com/tagoWorks/flare/wiki/Installing-WebDAV)!
+### To get started, either [purchase a domain](https://github.com/tagoWorks/flare/wiki/Getting-a-Domain) or boot up your Linux server and start by [setting up WebDAV](https://github.com/tagoWorks/flare/wiki/Installing-WebDAV)!
 
 <br />
 
