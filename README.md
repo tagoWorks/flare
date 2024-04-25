@@ -19,7 +19,6 @@
 
 **You will need to have the following requirements installed on your server in order for Flare to work:**
 
-*Ones undelined in blue are gone over in the wiki pages*
    1. [Python 3.6](https://docs.python-guide.org/starting/install3/linux/)
    2. [PIP](https://www.tecmint.com/install-pip-in-linux/)
    3. [Node.js](https://snapcraft.io/node)
