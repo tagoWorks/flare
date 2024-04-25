@@ -11,6 +11,10 @@
 
 > Flare is a modified version of [AKoD](https://github.com/tagoWorks/akod) which instead of using GitHub and Netlify servers, uses your own Linux server to host the data. Flare allows your users to validate their purchased activation keys from your site using a simple Discord bot command. It creates a directory with the validated account name, generates an encrypted key file, and adds the changes to the WebDAV directory for access. Flare also includes amazing additional features such as HWID/Node locking licenses, complete API and server access, and custom domains to make your project even more professional!
 
+<div align="center">
+<img width="547.8" height="94.6" src="https://cdn.discordapp.com/attachments/1092315227057561630/1232924570206470144/keyadd.png?ex=662b39fc&is=6629e87c&hm=5c36b90a883b993ab22d8c088f8330f22c951a85a8186817152ae4c947482e7d&">
+</div>
+
 # Getting Started with Flare 🔥
 
 **Using Flare is a little more complicated than AKoD, as it utilizies Linux, so you will be in the terminal a lot. Flare also requires you to have a registered domain, in order to tunnel your server through Cloudflare.**
