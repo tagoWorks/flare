@@ -9,17 +9,16 @@
     
 </div>
 
-> Flare is a modified version of [AKoD](https://github.com/tagoWorks/akod) which instead of using GitHub and Netlify servers, uses your own Ubuntu or Linux server to host the data. Flare allows your users to validate their purchased activation keys from your site using a simple Discord bot command. It creates a directory with the validated account name, generates an encrypted key file, and adds the changes to the WebDAV directory for access. Flare also includes amazing additional features such as HWID/Node locking licenses, complete API and server access, and custom domains to make your project even more professional!
+> Flare is a modified version of [AKoD](https://github.com/tagoWorks/akod) which instead of using GitHub and Netlify servers, uses your own Linux server to host the data. Flare allows your users to validate their purchased activation keys from your site using a simple Discord bot command. It creates a directory with the validated account name, generates an encrypted key file, and adds the changes to the WebDAV directory for access. Flare also includes amazing additional features such as HWID/Node locking licenses, complete API and server access, and custom domains to make your project even more professional!
 
 # Getting Started with Flare 🔥
 
-**Using Flare is a little more complicated than AKoD, as it utilizies Ubuntu/Linux, so you will be in the terminal a lot. Flare also requires you to have a registered domain, in order to tunnel your server through Cloudflare.**
+**Using Flare is a little more complicated than AKoD, as it utilizies Linux, so you will be in the terminal a lot. Flare also requires you to have a registered domain, in order to tunnel your server through Cloudflare.**
 
-<img align="right" width="550.4" height="453.6" src="https://cdn.discordapp.com/attachments/1092315227057561630/1232696927343218779/compare.png?ex=662a65f9&is=66291479&hm=fa242de9db7c37359636255836b2365910db9db1b78bab0539c4280db3e8dbc4&">
+<img align="right" width="550.4" height="453.6" src="https://cdn.discordapp.com/attachments/1092315227057561630/1232910500610703440/compare.png?ex=662b2ce1&is=6629db61&hm=8b3a8d872761bd22ae72b0daf79eab7225d3b01233824f9c2cd51d35a9b7e178&">
 
 **You will need to have the following requirements installed on your server in order for Flare to work:**
 
-*Ones undelined in blue are gone over in the wiki pages*
    1. [Python 3.6](https://docs.python-guide.org/starting/install3/linux/)
    2. [PIP](https://www.tecmint.com/install-pip-in-linux/)
    3. [Node.js](https://snapcraft.io/node)
@@ -27,9 +26,11 @@
    5. [Apache](https://github.com/tagoWorks/flare/wiki/Installing-WebDAV#install-apache-web-server)
    6. [Docker](https://github.com/tagoWorks/flare/wiki/Setting-up-Cloudflare#how-to-install-docker-on-ubuntu)
 
-### To get started, either [purchase a domain](https://github.com/tagoWorks/flare/wiki/Getting-a-Domain) or boot up your Ubuntu/Linux server and start by [setting up WebDAV](https://github.com/tagoWorks/flare/wiki/Installing-WebDAV)!
+### To get started, either [purchase a domain](https://github.com/tagoWorks/flare/wiki/Getting-a-Domain) or boot up your Linux server and start by [setting up WebDAV](https://github.com/tagoWorks/flare/wiki/Installing-WebDAV)!
 
 <br />
+
+#### *NOTE: In order to tunnel your servers through Cloudflare you must own a domain
 
 # License & Information 📃
 This project is published under the [MIT license](./LICENSE)
