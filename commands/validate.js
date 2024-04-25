@@ -10,7 +10,7 @@ module.exports = {
     .addStringOption(option =>
       option
         .setName('activation-key')
-        .setDescription('Paste your activation key here (ABCD-1234-ABCD-1234)')
+        .setDescription('Paste your activation key here')
         .setRequired(true)
     )
     .addStringOption(option =>

@@ -6,7 +6,7 @@ const { ownerID, guildID } = require('../config.json');
 module.exports = {
   data: new SlashCommandBuilder()
     .setName('keyadd')
-    .setDescription('Add a new key (Owner only)')
+    .setDescription('Add a new key to the list of valid keys')
     .addStringOption(option =>
       option
         .setName('key')
@@ -31,7 +31,7 @@ module.exports = {
     }
 
     const licenseKeyToAdd = interaction.options.getString('key');
-    const licenseLockType = interaction.options.getString('license-locker');
+    const licenseLockType = interaction.options.getString('lock');
     console.log('Received license key to add:', licenseKeyToAdd);
     console.log('Received license lock type:', licenseLockType);
 

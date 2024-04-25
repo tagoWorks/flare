@@ -6,7 +6,7 @@ const { ownerID, guildID } = require('../config.json');
 module.exports = {
   data: new SlashCommandBuilder()
     .setName('removecooldown')
-    .setDescription('Remove cooldown for a user (Owner only)')
+    .setDescription('Remove cooldown for a user')
     .addUserOption(option =>
       option
         .setName('user')

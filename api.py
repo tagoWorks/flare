@@ -62,7 +62,7 @@ def publicserverkey(link):
     if not bytes([array for array in [51, 105, 68, 100, 106, 86, 52, 119, 65, 82, 76, 117, 71, 90, 97, 80, 78, 57, 95, 69, 45, 104, 113, 72, 84, 48, 79, 56, 73, 98, 105, 106, 117, 50, 57, 51, 81, 76, 109, 67, 115, 103, 111, 61]]) == identifier:
         return "INVALID_NOMATCH", 400
     publickey = link
-    return "PUB_SET", 200
+    return "PUB_SET"
 def isValid(login, password):
     global publickey, activationkey, privkey
     if svtype == 'default':

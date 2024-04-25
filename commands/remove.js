@@ -6,7 +6,7 @@ const { ownerID, guildID } = require('../config.json');
 module.exports = {
   data: new SlashCommandBuilder()
     .setName('remove')
-    .setDescription('Remove a registered account (Owner only)')
+    .setDescription('Remove a registered account')
     .addStringOption(option =>
       option
         .setName('account-name')
