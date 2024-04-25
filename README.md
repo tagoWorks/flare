@@ -31,6 +31,8 @@
 
 <br />
 
+#### *NOTE: In order to tunnel your servers through Cloudflare you must own a domain
+
 # License & Information 📃
 This project is published under the [MIT license](./LICENSE)
 
