@@ -1,4 +1,4 @@
-import os, subprocess, time, shutil, string, secrets, json, glob, requests, sys
+import os, subprocess, time, shutil, string, secrets, json, glob, requests, sys, datetime
 from cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes
 from cryptography.hazmat.primitives.kdf.pbkdf2 import PBKDF2HMAC
 from cryptography.hazmat.primitives import hashes
@@ -11,6 +11,14 @@ from cryptography.fernet import Fernet
 #-------------------------------------------------------------------------------------
 
 try:
+    def log_message(message):
+        logtime = datetime.datetime.now().strftime('%H:%M:%S')
+        with open('flare.log', 'a') as f:
+            f.write(f"[WATCHER-{logtime}] {message}\n")
+    if not os.path.exists('flare.log'):
+        with open('flare.log', 'w') as f:
+            f.write('')
+            f.close()
     def encrypt_file_pass(file_path):
         global privatekey
         with open(file_path, 'rb') as f:
@@ -147,8 +155,10 @@ try:
     print("\n\nWatching for accounts in " + registered_accounts + "...")
     with open('watcher.lck', 'wb') as f:
         f.write(os.urandom(16))
+    log_message('Watching for accounts in ' + registered_accounts + '...')
     monitor(registered_accounts, webdavdirectory)
 finally:
     if os.path.exists('watcher.lck'):
         os.remove('watcher.lck')
+    log_message('[!] Killed watcher')
     exit()

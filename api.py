@@ -41,7 +41,7 @@ debug = False
 
 
 
-import requests, os, shutil
+import requests, os, shutil, datetime
 from flask import Flask, request
 from cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes
 from cryptography.hazmat.backends import default_backend
@@ -52,6 +52,15 @@ app = Flask(__name__)
 key = b''
 publickey = ''
 activationkey = ''
+
+def log_message(message):
+    logtime = datetime.datetime.now().strftime('%H:%M:%S')
+    with open('flare.log', 'a') as f:
+        f.write(f"[AUTH-API-{logtime}] {message}\n")
+if not os.path.exists('flare.log'):
+    with open('flare.log', 'w') as f:
+        f.write('')
+        f.close()
 def setActivationKey(string):
     global activationkey
     activationkey = string
@@ -60,15 +69,19 @@ def privatekey(encrypted_key):
     privkey = bytes(encrypted_key, 'utf-8')
 def publicserverkey(link):
     global publickey
-    identifier = b'3iDdjV4wARLuGZaPN9_E-hqHT0O8Ibiju293QLmCsgo='
-    fernet = Fernet(identifier)
-    link = fernet.decrypt(link.encode()).decode()
-    if not bytes([array for array in [51, 105, 68, 100, 106, 86, 52, 119, 65, 82, 76, 117, 71, 90, 97, 80, 78, 57, 95, 69, 45, 104, 113, 72, 84, 48, 79, 56, 73, 98, 105, 106, 117, 50, 57, 51, 81, 76, 109, 67, 115, 103, 111, 61]]) == identifier:
-        return "INVALID_NOMATCH", 400
-    publickey = link
-    return "PUB_SET"
+    try:
+        identifier = b'3iDdjV4wARLuGZaPN9_E-hqHT0O8Ibiju293QLmCsgo='
+        fernet = Fernet(identifier)
+        link = fernet.decrypt(link.encode()).decode()
+        if not bytes([array for array in [51, 105, 68, 100, 106, 86, 52, 119, 65, 82, 76, 117, 71, 90, 97, 80, 78, 57, 95, 69, 45, 104, 113, 72, 84, 48, 79, 56, 73, 98, 105, 106, 117, 50, 57, 51, 81, 76, 109, 67, 115, 103, 111, 61]]) == identifier:
+            return "INVALID_NOMATCH", 400
+        publickey = link
+        return "PUB_SET", 200
+    except:
+        return "INVALID", 400
 def isValid(login, password):
     global publickey, activationkey, privkey
+    log_message(f"Attempting to validate {login} (V1)")
     if svtype == 'default':
         if customloco == 'none':
             url = publickey + login + '/check'
@@ -99,6 +112,7 @@ def isValid(login, password):
         final_decrypted_data = decryptor.update(decrypted_data) + decryptor.finalize()
         final_decrypted_data = final_decrypted_data.decode()
         print(final_decrypted_data)
+        log_message(f"{login} checked (V1)")
         return key == activationkey
     except:
         return False
@@ -121,6 +135,7 @@ def isValidV2(login, password, id):
         print ("NOT FOUND: " + url)
         return False
     try:
+        log_message(f"Attempting to validate {login} (V2)")
         encrypted_data = response.content
         iv = b'JMWUGHTG78TH78G1'
         final_encrypted_data = encrypted_data[len(iv):]
@@ -141,6 +156,7 @@ def isValidV2(login, password, id):
             key = parts[0].strip()
             hardlocked = parts[2].strip()
             if hardlocked == "HWID" or hardlocked == "IP":
+                log_message(f"Key is hardlocked... checking")
                 print(f"Key: {key}, Value: {hardlocked}")
                 with open(flareRegisteredAccountsDir + login + '/check', 'w') as f:
                     f.write(f"{key}:{id}")
@@ -150,15 +166,19 @@ def isValidV2(login, password, id):
             else:
                 if hardlocked == id:
                     print (f"STATIC: {hardlocked} INCOMING: {id}")
+                    log_message(f"STATIC: {hardlocked} === INCOMING: {id}")
                     return True
                 else:
                     print (f"STATIC: {hardlocked} INCOMING: {id}")
+                    log_message(f"STATIC: {hardlocked} =/= INCOMING: {id}")
                     return False
         else:
             print (f"INVALID: {final_decrypted_data}")
+            log_message(f"DATA NOT VALID: {final_decrypted_data}")
             return False
     except Exception as e:
         print (f"UNKNOWN ERROR: {e}")
+        log_message(f"[!] Exception: {e}")
         return False
 
 def encrypt_file_pass(file_path):

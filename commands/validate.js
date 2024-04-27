@@ -47,8 +47,19 @@ module.exports = {
       });
       return;
     }
+    const logFilePath = path.join(__dirname, '..', 'flare.log');
 
-
+    function logToFile(message) {
+      const now = new Date();
+      const timestamp = `[DISCORDBOT-${now.getHours()}:${now.getMinutes()}:${now.getSeconds()}]`;
+      const logMessage = `${timestamp} ${message}\n`;
+    
+      fs.appendFile(logFilePath, logMessage, (err) => {
+        if (err) {
+          console.error('Error writing to log file:', err);
+        }
+      });
+    }
     cooldowns[userId] = Date.now();
     if (!/^[a-zA-Z0-9]+$/.test(accname) || /\s/.test(accname) || accname.length <= 5 || accname == accpass) {
       await interaction.reply({
@@ -66,18 +77,17 @@ module.exports = {
       delete cooldowns[userId];
       return;
     }
-    console.log('Requirements met.');
+    logToFile('Requirements met.');
 
-    // Path to the assets folder from the root
     const assetsFolderPath = path.join(__dirname, '..', 'assets');
-    console.log('Assets Folder Path:', assetsFolderPath);
-
-    // Path to all valid licenses text file in the assets folder
+    logToFile(`Assets Folder Path: ${assetsFolderPath}`);
+  
     const licenseFilePath = path.join(assetsFolderPath, 'validkeys.txt');
-    console.log('License File Path:', licenseFilePath);
-
+    logToFile(`License File Path: ${licenseFilePath}`);
+  
     const blacklistFilePath = path.join('.', 'blacklist.txt');
-    console.log('Blacklist File Path:', blacklistFilePath);
+    logToFile(`Blacklist File Path: ${blacklistFilePath}`);
+  
     fs.readFile(blacklistFilePath, 'utf8', (err, data) => {
       if (err) {
         console.error('Error reading blacklist file:', err);
