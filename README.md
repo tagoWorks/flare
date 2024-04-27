@@ -9,7 +9,8 @@
     
 </div>
 
-> Flare is a modified version of [AKoD](https://github.com/tagoWorks/akod) which instead of using GitHub and Netlify servers, uses your own Linux server to host the data. Flare allows your users to validate their purchased activation keys from your site using a simple Discord bot command. It creates a directory with the validated account name, generates an encrypted key file, and adds the changes to the WebDAV directory for access. Flare also includes amazing additional features such as HWID/Node locking licenses, complete API and server access, and custom domains to make your project even more professional!
+> Flare is a modified version of [AKoD](https://github.com/tagoWorks/akod) which instead of using GitHub and Netlify servers, uses your own Linux server to host the data. Flare allows your users to validate their purchased activation keys from your site using a simple Discord bot command. Flare includes amazing additional features such as HWID/Node locking licenses, complete API and server access, and custom domains to make your project even more professional! To top it all off, the brand new [web dashboard](https://github.com/t-a-g-o/flare-dashboard) allows for easier setup, and shows some statistics about your keys & users.
+
 <br />
 <div align="center">
 <img width="547.8" height="94.6" src="https://cdn.discordapp.com/attachments/1092315227057561630/1232924570206470144/keyadd.png?ex=662b39fc&is=6629e87c&hm=5c36b90a883b993ab22d8c088f8330f22c951a85a8186817152ae4c947482e7d&">
@@ -37,7 +38,7 @@
 #### *NOTE: In order to tunnel your servers through Cloudflare you must own a domain
 
 # Brand New Web App! 💻
-### If your using Flare on a terminal based Linux OS, [this brand new web app](https://github.com/t-a-g-o/flare-webapp) I'm trying to work on works pretty well already!
+### If your using Flare on a terminal based Linux OS, [this brand new web app](https://github.com/t-a-g-o/flare-dashboard) I'm trying to work on works pretty well already!
 <div align="center">
 <img width="538.8" height="448.8" src="https://cdn.discordapp.com/attachments/1092315227057561630/1233800533219737663/preview.png?ex=662e69ca&is=662d184a&hm=453095cfa109961d7632f23b5fdf64f737dbbb51734fc4a12843c4f6078612f0&">
 </div>
