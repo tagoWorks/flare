@@ -42,7 +42,7 @@
 <img width="538.8" height="448.8" src="https://cdn.discordapp.com/attachments/1092315227057561630/1233800533219737663/preview.png?ex=662e69ca&is=662d184a&hm=453095cfa109961d7632f23b5fdf64f737dbbb51734fc4a12843c4f6078612f0&">
 </div>
 
-# License & Information 📃
+# License & Contact 📃
 This project is published under the [MIT license](./LICENSE)
 
-If you are interested in working together, or want to get in contact with me please email me at santiagobuisnessmail@gmail.com
+If you are interested in working together, or want to get in contact with me please email me at santiago@tago.works
