@@ -10,17 +10,21 @@
 # Only the name of the directory is needed, no slashes
 customloco = 'none'
 
+
 # Database service type. Usually only change if your not using Netlify
 # Since you're on Ubuntu or Linux and using Apache, set this to 'webdav'
 svtype = 'webdav'
+
 
 # Change the host IP of the Flask API when using webdav
 # Recommended to not change this unless you know what you are doing
 usecustomhost = '0.0.0.0'
 
+
 # Database directory for the API to read and write to
 # Mostly used if you are node locking licenses
 flareRegisteredAccountsDir = './assets/registered/'
+
 
 # Debug mode for Flask API
 # Set debug mode to false when deploying to production
@@ -37,7 +41,7 @@ debug = False
 
 
 
-import requests, os, shutil, time
+import requests, os, shutil
 from flask import Flask, request
 from cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes
 from cryptography.hazmat.backends import default_backend
@@ -246,7 +250,13 @@ def is_valid_route_version_2():
     else:
         return "INVALID", 401
 if __name__ == '__main__':
-    if svtype == 'default':
-        app.run(debug=debug)
-    elif svtype == 'webdav':
-        app.run(host=usecustomhost, debug=debug)
+    try:
+        with open('api.lck', 'rb') as f:
+            f.write(os.urandom(16))
+        if svtype == 'default':
+            app.run(debug=debug)
+        elif svtype == 'webdav':
+            app.run(host=usecustomhost, debug=debug)
+    finally:
+        if os.path.exists('api.lck'):
+            os.remove('api.lck')
