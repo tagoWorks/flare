@@ -251,7 +251,7 @@ def is_valid_route_version_2():
         return "INVALID", 401
 if __name__ == '__main__':
     try:
-        with open('api.lck', 'rb') as f:
+        with open('api.lck', 'wb') as f:
             f.write(os.urandom(16))
         if svtype == 'default':
             app.run(debug=debug)
