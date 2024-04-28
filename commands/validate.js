@@ -51,7 +51,7 @@ module.exports = {
 
     function logToFile(message) {
       const now = new Date();
-      const timestamp = `[DISCORDBOT-${now.getHours()}:${now.getMinutes()}:${now.getSeconds()}]`;
+      const timestamp = `[BOT-${now.getHours()}:${now.getMinutes()}:${now.getSeconds()}]`;
       const logMessage = `${timestamp} ${message}\n`;
     
       fs.appendFile(logFilePath, logMessage, (err) => {
