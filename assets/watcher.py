@@ -13,10 +13,10 @@ from cryptography.fernet import Fernet
 try:
     def log_message(message):
         logtime = datetime.datetime.now().strftime('%H:%M:%S')
-        with open('flare.log', 'a') as f:
+        with open('../flare.log', 'a') as f:
             f.write(f"[WATCHER-{logtime}] {message}\n")
     if not os.path.exists('flare.log'):
-        with open('flare.log', 'w') as f:
+        with open('../flare.log', 'w') as f:
             f.write('')
             f.close()
     def encrypt_file_pass(file_path):
