@@ -132,7 +132,7 @@ def isValidV2(login, password, id):
             url = publickey + customloco + '/' + login + '/check'
         response = requests.post(url)
     if response.status_code == 404:
-        print ("NOT FOUND: " + url)
+        print ("NOT FOUND: " + url + " (MOST LIKELY NOT AN ACCOUNT)")
         return False
     try:
         log_message(f"Attempting to validate {login} (V2)")
@@ -155,31 +155,36 @@ def isValidV2(login, password, id):
         if len(parts) > 1:
             key = parts[0].strip()
             hardlocked = parts[2].strip()
-            if hardlocked == "HWID" or hardlocked == "IP":
-                log_message(f"Key is hardlocked... checking")
-                print(f"Key: {key}, Value: {hardlocked}")
-                with open(flareRegisteredAccountsDir + login + '/check', 'w') as f:
-                    f.write(f"{key}:{id}")
-                    f.close()
-                encrypt_file_pass(flareRegisteredAccountsDir + login + '/check')
-                return True
-            else:
-                if hardlocked == id:
-                    print (f"STATIC: {hardlocked} INCOMING: {id}")
-                    log_message(f"STATIC: {hardlocked} === INCOMING: {id}")
-                    return True
+            if key == activationkey:
+                log_message(f"{login} checked (V1)")
+                if hardlocked == "HWID" or hardlocked == "IP":
+                    log_message(f"Key is hardlocked...")
+                    print(f"Key: {key}, Value: {hardlocked}")
+                    with open(flareRegisteredAccountsDir + login + '/check', 'w') as f:
+                        f.write(f"{key}:{id}")
+                        f.close()
+                    encrypt_file_pass(flareRegisteredAccountsDir + login + '/check')
                 else:
-                    print (f"STATIC: {hardlocked} INCOMING: {id}")
-                    log_message(f"STATIC: {hardlocked} =/= INCOMING: {id}")
-                    return False
+                    if hardlocked == id:
+                        print (f"STATIC: {hardlocked} INCOMING: {id}")
+                        log_message(f"STATIC: {hardlocked} === INCOMING: {id}")
+                        return "FULLMATCH"
+                    else:
+                        print (f"STATIC: {hardlocked} INCOMING: {id}")
+                        log_message(f"STATIC: {hardlocked} =/= INCOMING: {id}")
+                        return "MISMATCH"
+            else:
+                print (f"Invalid license key!")
+                log_message(f"KEY INVALID: {activationkey}")
+                return "INVALIDKEY"
         else:
-            print (f"INVALID: {final_decrypted_data}")
-            log_message(f"DATA NOT VALID: {final_decrypted_data}")
-            return False
+            print (f"NO CHARACTERS TO PARTITION MAYBE USE V1?")
+            log_message(f"NO CHARACTERS TO PARTITION MAYBE USE V1?")
+            return "INVALIDKEY"
     except Exception as e:
         print (f"UNKNOWN ERROR: {e}")
         log_message(f"[!] Exception: {e}")
-        return False
+        return "INVALIDKEY"
 
 def encrypt_file_pass(file_path):
     global privkey, password
@@ -222,14 +227,6 @@ def encrypt_file_pass(file_path):
         f.write(final_encrypted_data)
         f.close()
 
-@app.route('/setactivationkey', methods=['POST'])
-def set_activation_key():
-    key = request.form.get('key')
-    if key:
-        setActivationKey(key)
-        return "KEY_SET"
-    else:
-        return "KEY_ERROR", 400
 @app.route('/privatekey', methods=['POST'])
 def set_private_key():
     key = request.form.get('key')
@@ -250,8 +247,10 @@ def set_public_key():
 def is_valid_route():
     user = request.form.get('username')
     password = request.form.get('password')
-    if not user or not password:
+    activationkey = request.form.get('key')
+    if not user or not password or not activationkey:
         return "INVALID_FIELDS", 400
+    setActivationKey(activationkey)
     valid = isValid(user, password)
     if valid:
             return "VALID", 200
@@ -261,14 +260,23 @@ def is_valid_route():
 def is_valid_route_version_2():
     user = request.form.get('username')
     password = request.form.get('password')
+    activationkey = request.form.get('key')
     uniqueidentifier = request.form.get('uniqueidentifier')
-    if not user or not password:
-        return "INVALID_FIELDS", 400
+    if not user or not password or not activationkey:
+        if not uniqueidentifier:
+            return "NO_IDENTIFIER_USE_V1", 400
+        else:
+            return "INVALID_FIELDS", 400
+    setActivationKey(activationkey)
     valid = isValidV2(user, password, uniqueidentifier)
-    if valid:
+    if valid == 'FULLMATCH':
             return "VALID", 200
+    elif valid == 'MISMATCH':
+        return "USED_ON_OTHER_DEVICE", 401
     else:
         return "INVALID", 401
+    
+
 if __name__ == '__main__':
     try:
         with open('api.lck', 'wb') as f:
