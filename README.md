@@ -40,7 +40,7 @@
 # Brand New Web App! 💻
 ### If your using Flare on a terminal based Linux OS, [this brand new web app](https://github.com/t-a-g-o/flare-dashboard) I'm trying to work on works pretty well already!
 <div align="center">
-<img width="538.8" height="448.8" src="https://cdn.discordapp.com/attachments/1092315227057561630/1233800533219737663/preview.png?ex=662e69ca&is=662d184a&hm=453095cfa109961d7632f23b5fdf64f737dbbb51734fc4a12843c4f6078612f0&">
+<img src="https://cdn.discordapp.com/attachments/1092315227057561630/1234875441526079579/showcase.png?ex=663252e0&is=66310160&hm=51da4ff2b518e6bf019d9bbe13ef2380dac81b242de95bf6b203ce2ab0cfb385&">
 </div>
 
 # License & Contact 📃
