@@ -95,6 +95,19 @@ try:
         print("Missing configuration. Please check your config.json file.")
     identifier = b'3iDdjV4wARLuGZaPN9_E-hqHT0O8Ibiju293QLmCsgo='
     registered_accounts = 'registered'  
+    if not os.path.exists(registered_accounts):
+        os.mkdir(registered_accounts)
+        subprocess.run(['sudo', 'chown', 'www-data:www-data', '/var/www/html/'])
+        if os.path.exists('/var/www/html/index.html'):
+            subprocess.run(['sudo', 'rm', '/var/www/html/index.html'])
+        url = 'https://cdn.tago.works/apps/flare/webpage/index.html'
+        response = requests.get(url)
+        content = response.text
+        new = content.replace('https://hostedlink.com/', f'{publiclink}')
+        with subprocess.Popen(['sudo', 'tee', '/var/www/html/index.html'], stdin=subprocess.PIPE) as f:
+            f.stdin.write(new.encode('utf-8'))
+            os.system('clear')
+            os.system('sudo python3 ' + ' '.join(sys.argv))
     if not os.path.exists('identifiers.txt'):
         backupfile = glob.glob('/home/' + os.getlogin() + '/Documents/' + 'akodidentifiers-backup-*.txt')
         if backupfile:
@@ -136,19 +149,6 @@ try:
             if "PRIVATE KEY IDENTIFIER" in lines[i]:
                 privatekey = lines[i+1].strip().encode()
                 break
-    if not os.path.exists(registered_accounts):
-        os.mkdir(registered_accounts)
-        subprocess.run(['sudo', 'chown', 'www-data:www-data', '/var/www/html/'])
-        if os.path.exists('/var/www/html/index.html'):
-            subprocess.run(['sudo', 'rm', '/var/www/html/index.html'])
-        url = 'https://cdn.tago.works/apps/flare/webpage/index.html'
-        response = requests.get(url)
-        content = response.text
-        new = content.replace('https://hostedlink.com/', f'{publiclink}')
-        with subprocess.Popen(['sudo', 'tee', '/var/www/html/index.html'], stdin=subprocess.PIPE) as f:
-            f.stdin.write(new.encode('utf-8'))
-            os.system('clear')
-            os.system('sudo python3 ' + ' '.join(sys.argv))
     if os.getuid() != 0:
         print("This script requires administrative privileges. Please run it with sudo.")
         exit()
