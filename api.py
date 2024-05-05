@@ -2,7 +2,7 @@
 #
 #   AKoD Authentication Flask API
 #   For more help visit https://github.com/tagoworks/flare/wiki
-#
+#   To view all the return codes visit https://github.com/tagoWorks/flare/wiki/API-Return-Codes
 #
 
 
