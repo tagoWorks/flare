@@ -55,20 +55,10 @@ module.exports = {
           return interaction.reply({ content: 'Error adding key. Please try again later.', ephemeral: true });
         }
     
-        logToFile('Successfully read file data');
-        const existingKeys = data.trim().split('\n');
-        logToFile(`Existing keys: ${existingKeys}`);
-    
         if (existingKeys.includes(licenseKeyToAdd)) {
           logToFile(`Key already exists: ${licenseKeyToAdd}`);
           return interaction.reply({ content: 'This key already exists.', ephemeral: true });
         }
-    
-        const newKeyEntry = licenseLockType ? `${licenseKeyToAdd}:${licenseLockType}` : licenseKeyToAdd;
-        logToFile(`New key entry: ${newKeyEntry}`);
-    
-        const newData = data.trim() + (data.trim() ? '\n' : '') + newKeyEntry;
-        logToFile(`Updated data: ${newData}`);
     
         fs.writeFile(licenseFilePath, newData, (err) => {
           if (err) {

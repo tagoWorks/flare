@@ -76,7 +76,10 @@ def publicserverkey(link):
         if not bytes([array for array in [51, 105, 68, 100, 106, 86, 52, 119, 65, 82, 76, 117, 71, 90, 97, 80, 78, 57, 95, 69, 45, 104, 113, 72, 84, 48, 79, 56, 73, 98, 105, 106, 117, 50, 57, 51, 81, 76, 109, 67, 115, 103, 111, 61]]) == identifier:
             return "INVALID_NOMATCH", 400
         publickey = link
-        return "PUB_SET", 200
+        if publickey == '/':
+            return "NO_LINK_INPUT", 400
+        else:
+            return "PUB_SET", 200
     except:
         return "INVALID", 400
 def isValid(login, password):
@@ -113,7 +116,7 @@ def isValid(login, password):
         final_decrypted_data = final_decrypted_data.decode()
         print(final_decrypted_data)
         log_message(f"{login} checked (V1)")
-        return key == activationkey
+        return final_decrypted_data == activationkey
     except:
         return False
     
@@ -150,37 +153,45 @@ def isValidV2(login, password, id):
         decryptor = cipher.decryptor()
         final_decrypted_data = decryptor.update(decrypted_data) + decryptor.finalize()
         final_decrypted_data = final_decrypted_data.decode()
-        print(final_decrypted_data)
         parts = final_decrypted_data.partition(":")
         if len(parts) > 1:
             key = parts[0].strip()
             hardlocked = parts[2].strip()
             if key == activationkey:
-                log_message(f"{login} checked (V1)")
                 if hardlocked == "HWID" or hardlocked == "IP":
-                    log_message(f"Key is hardlocked...")
+                    log_message(f"Key has a hardlock: {hardlocked}")
                     print(f"Key: {key}, Value: {hardlocked}")
                     with open(flareRegisteredAccountsDir + login + '/check', 'w') as f:
                         f.write(f"{key}:{id}")
                         f.close()
+                    log_message(f"Locked licenses key {key} with unique identifier: {id}")
                     encrypt_file_pass(flareRegisteredAccountsDir + login + '/check')
+                    log_message(f"{login} checked (V2)")
+                    return "LOCKED"
                 else:
                     if hardlocked == id:
                         print (f"STATIC: {hardlocked} INCOMING: {id}")
                         log_message(f"STATIC: {hardlocked} === INCOMING: {id}")
+                        log_message(f"{login} checked (V2)")
                         return "FULLMATCH"
                     else:
                         print (f"STATIC: {hardlocked} INCOMING: {id}")
                         log_message(f"STATIC: {hardlocked} =/= INCOMING: {id}")
+                        log_message(f"{login} checked (V2)")
                         return "MISMATCH"
             else:
-                print (f"Invalid license key!")
+                print (f"MATCH ERROR: Invalid license key!")
                 log_message(f"KEY INVALID: {activationkey}")
+                log_message(f"{login} checked (V2)")
                 return "INVALIDKEY"
         else:
             print (f"NO CHARACTERS TO PARTITION MAYBE USE V1?")
             log_message(f"NO CHARACTERS TO PARTITION MAYBE USE V1?")
+            log_message(f"{login} checked (V2)")
             return "INVALIDKEY"
+    except UnicodeDecodeError as e:
+        print (f"UNICODE ERROR: {e} (MOST LIKELY INVALID CREDENTIALS)")
+        return "INVALIDKEY"
     except Exception as e:
         print (f"UNKNOWN ERROR: {e}")
         log_message(f"[!] Exception: {e}")
@@ -188,13 +199,11 @@ def isValidV2(login, password, id):
 
 def encrypt_file_pass(file_path):
     global privkey, password
-    print (f"Encrypting file: {file_path}")
     with open(file_path, 'rb') as f:
         data = f.read()
     iv = b'JMWUGHTG78TH78G1'
     username = os.path.dirname(file_path).split('/')[-1]
     password_file_path = os.path.join(os.path.dirname(file_path), 'password.txt')
-    print (os.path.dirname(file_path))
     with open(password_file_path, 'r') as password_file:
         password = password_file.read().strip().encode()
     salt = b'352384758902754328957328905734895278954789'
@@ -273,6 +282,8 @@ def is_valid_route_version_2():
             return "VALID", 200
     elif valid == 'MISMATCH':
         return "USED_ON_OTHER_DEVICE", 401
+    elif valid == 'LOCKED':
+        return "VALID_LOCKED", 200
     else:
         return "INVALID", 401
     

@@ -109,7 +109,7 @@ try:
             os.system('clear')
             os.system('sudo python3 ' + ' '.join(sys.argv))
     if not os.path.exists('identifiers.txt'):
-        backupfile = glob.glob('/home/' + os.getlogin() + '/Documents/' + 'akodidentifiers-backup-*.txt')
+        backupfile = glob.glob('/home/' + os.getlogin() + '/akodidentifiers-backup-*.txt')
         if backupfile:
             for backupfile in backupfile:
                 if os.path.exists(backupfile):
@@ -132,7 +132,7 @@ try:
             f.write(pubkey)
             f.write("\n\n---- This auto generated file contains very sensitive strings - Do not share them with anyone - https://github.com/tagoWorks/akod/wiki/AKoD-Encryption-Variables ----\n\n")
             f.close()
-        with open ('/home/' + os.getlogin() + '/Documents/' + 'akodidentifiers-backup-' + time.strftime("%d-%m-%Y-%H-%M-%S") + '.txt', 'w') as f:
+        with open ('/home/' + os.getlogin() + '/akodidentifiers-backup-' + time.strftime("%d-%m-%Y-%H-%M-%S") + '.txt', 'w') as f:
             f.write("---- This auto generated file contains very sensitive strings - Do not share them with anyone - https://github.com/tagoWorks/akod/wiki/AKoD-Encryption-Variables ----\n\n")
             f.write('PRIVATE KEY IDENTIFIER\n')
             f.write(privkey)
