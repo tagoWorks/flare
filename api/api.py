@@ -23,7 +23,7 @@ usecustomhost = '0.0.0.0'
 
 # Database directory for the API to read and write to
 # Mostly used if you are node locking licenses
-flareRegisteredAccountsDir = './assets/registered/'
+flareRegisteredAccountsDir = '../assets/registered/'
 
 
 # Debug mode for Flask API
