@@ -39,9 +39,7 @@
 
 # Brand New Web App! 💻
 ### If your using Flare on a terminal based Linux OS, [this brand new web app](https://github.com/t-a-g-o/flare-dashboard) I'm trying to work on works pretty well already!
-<div align="center">
-<img src="https://cdn.tago.works/apps/flare/img/showcase.png">
-</div>
+
 
 # License & Contact 📃
 This project is published under the [MIT license](./LICENSE)
