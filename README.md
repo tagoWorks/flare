@@ -1,7 +1,7 @@
 <div align="center">
     </a>
     <br />
-    <img align="center" src="https://cdn.tago.works/apps/flare/img/flaretext.png">
+    <img align="center" src="./readme/flare.png">
     
    ![GitHub last commit](https://img.shields.io/github/last-commit/tagoworks/flare)
    ![GitHub issues](https://img.shields.io/github/issues-raw/tagoworks/flare)
@@ -13,14 +13,14 @@
 
 <br />
 <div align="center">
-<img width="547.8" height="94.6" src="https://cdn.tago.works/apps/flare/img/keyadd.png">
+<img width="547.8" height="94.6" src="./readme/keyadd.png">
 </div>
 
 # Getting Started with Flare 🔥
 
 **Using Flare is a little more complicated than AKoD, as it utilizies Linux, so you will be in the terminal a lot. Flare also requires you to have a registered domain, in order to tunnel your server through Cloudflare.**
 
-<img align="right" width="550.4" height="453.6" src="https://cdn.tago.works/apps/flare/img/compare.png">
+<img align="right" width="550.4" height="453.6" src="./readme/compare.png">
 
 **You will need to have the following requirements installed on your server in order for Flare to work:**
 
@@ -36,10 +36,6 @@
 <br />
 
 #### *NOTE: In order to tunnel your servers through Cloudflare you must own a domain
-
-# Brand New Web App! 💻
-### If your using Flare on a terminal based Linux OS, [this brand new web app](https://github.com/t-a-g-o/flare-dashboard) I'm trying to work on works pretty well already!
-
 
 # License & Contact 📃
 This project is published under the [MIT license](./LICENSE)
